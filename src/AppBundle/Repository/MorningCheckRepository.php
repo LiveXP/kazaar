@@ -32,7 +32,7 @@ class MorningCheckRepository extends EntityRepository
      */
     public function findOneOpen()
     {
-        return $this->findOneBy(['closed' => false, 'closedBy' => null], ['position' => 'ASC']);
+        return $this->findOneBy(['closed' => false], ['position' => 'ASC']);
     }
 
     /**

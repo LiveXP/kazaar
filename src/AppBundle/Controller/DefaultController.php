@@ -204,41 +204,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/create_ticket", name="ajax_create_ticket", options={"expose"=true})
-     * @Method({"POST"})
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
-    public function createTicketAction(Request $request)
-    {
-        if ($request->request->has('appbundle_checking')) {
-            $checking = $this->getDoctrine()->getRepository("AppBundle:Checking")->find($request->query->get('id'));
-            $form = $this->createForm(CheckingType::class, $checking);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                if (null !== $ticket = $this->get('app.kayako_sdk')->createTicketFromChecking($checking, $this->getUser())) {
-                    $url = str_replace("api", "staff", $this->getParameter('kayako_api_url')) . "/Tickets/Ticket/View/%s/";
-                    $userURL = str_replace("/staff", "", $url);
-
-                    return new JsonResponse([
-                        'success' => true,
-                        'id' => $ticket[0]['id'],
-                        'staff' => sprintf($url, $ticket[0]['id']),
-                        'user' => sprintf($userURL, $ticket[0]['id'])
-                    ]);
-                }
-
-                return new JsonResponse(['error' => "Une erreur est survenue lors de la création du ticket"]);
-            }
-        }
-
-        return new JsonResponse("Not all parameters were provided", 403);
-    }
-
-    /**
      * @Route("/remove_image", name="remove_image", options={"expose"=true})
      * @Method({"POST"})
      *

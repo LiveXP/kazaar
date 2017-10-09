@@ -110,7 +110,7 @@ sonata_doctrine_orm_admin:
         image: :CRUD:list_image.html.twig
 
 sonata_admin:
-    title:                'MorningCheck'
+    title:                'Kaazar'
     templates:
         edit: AppBundle:CRUD:edit.html.twig
         layout: AppBundle::standard_layout.html.twig
