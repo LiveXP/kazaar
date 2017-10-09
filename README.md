@@ -1,7 +1,7 @@
 Kaazar
 ======
 
-Kaazar is an internal system in LiveXP used to simplify daily IT Morning Checks.
+Kaazar is an internal LiveXP system used to simplify daily IT Morning Checks.
 
 Installation
 ------------
