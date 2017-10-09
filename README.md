@@ -5,12 +5,12 @@ Kaazar is an internal LiveXP system used to simplify daily IT Morning Checks.
 
 Features
 --------
-* Webinterface to run Check
+* Web Interface to run daily Check
   * Mark Down Editor
   * Ability to copy/past ScreenShot easyly
   * Send the result by email (if wanted)
 * Organisation by project / customer
-* Get a view on the global progression
+* Get a view on the daily global progression
 * Get Statistic by month
 * Consult the history by Check and/or Date
 * Admin Web Interface for :
@@ -91,17 +91,14 @@ $ docker-compose exec php-fpm bin/console assets:install --symlink web
 $ docker-compose exec php-fpm bin/console assetic:dump
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Commands
-------
+#### Commands
 
-This project use the following command to send emails, you may put it in a crontab to send email to a fixed interval
-
+This project use the following command to send emails, you may test with : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $ docker-compose exec php-fpm bin/console swiftmailer:spool:send --env=prod
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Usage
------
+or better put it in a crontab to send email to a fixed interval :
 
 #### Cronjobs
 
@@ -112,7 +109,8 @@ $ */1 *   * * *   root /usr/bin/docker-compose exec php-fpm bin/console swiftmai
 $ 0   23  * * *   root /usr/bin/docker-compose exec php-fpm bin/console morningcheck:close --env=prod
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### Admin interface / Content edition
+Admin interface / Content edition
+-----
 
 You can create/update/delete your models in the admin interface (/admin/dashboard)
 
