@@ -1,0 +1,51 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}Historique{% endblock %}
+
+{% block body %}
+    {% form_theme form "bootstrap_3_horizontal_layout.html.twig" %}
+    {{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.date) }}
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                {{ form_widget(form.date) }}
+            </div>
+        </div>
+    </div>
+
+    <p class="text-gray col-sm-offset-2">
+        En choisissant une date, seuls les Morning Check passés ce jour seront 
+        présents dans la liste ci-dessous.
+    </p>
+
+    {{ form_row(form.name) }}
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <button type="submit" class="btn btn-default">Rechercher</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+    {% if results is defined and results is not null %}
+        {% for result in results %}
+            <h2 class="text-center">{{ result|mail_title(result.date) }}</h2>
+            {% include 'AppBundle:Part:checkings.html.twig' with {'morningCheck': result} %}
+        {% endfor %}
+
+        {% if pager.haveToPaginate %}
+            <div class="pagerfanta col-center-block col-md-12 text-center">
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {
+                    'routeName': 'history_index',
+                    'routeParams' : { 'research': app.request.query.get('research')}
+                }) }}
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-success" role="alert">Aucun élément trouvé</div>
+    {% endif %}
+{% endblock %}

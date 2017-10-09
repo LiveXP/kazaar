@@ -1,0 +1,114 @@
+/* Space out content a bit */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Custom page header */
+.header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 40px 0;
+}
+
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .header, .marketing, .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+}
+
+.footer-content {
+    margin-left: 10px;
+}
+
+
+.list-group-item.danger, .list-group-item.danger:hover {
+    color: #ffffff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.list-group-item.danger.active, .list-group-item.danger:active {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+.list-group-item.danger:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+a.list-group-item.dangerer:focus, a.list-group-item.dangerer.focus {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #761c19;
+}
+
+.list-group-item.success, .list-group-item.success:hover {
+    color: #ffffff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.list-group-item.warning, .list-group-item.warning:hover {
+    color: #ffffff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.list-group-item.info, .list-group-item.info:hover {
+    color: #ffffff;
+    background-color: #5bc0de;
+    border-color: #46b8da
+}
+
+
+.list-group-item:last-child,
+.list-group-item:first-child,
+.panel,
+.progress,
+.nav-pills > li > a
+{
+    border-radius: 1px;
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    min-height: 100px;
+}
+
+.img-preview img {
+    cursor: zoom-in;
+    max-height: 200px;
+}

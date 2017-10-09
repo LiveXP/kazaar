@@ -1,0 +1,46 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: true
+
+    # makes classes in src/AppBundle available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    # add more services, or override services that need manual wiring
+    app.worker:
+      class: AppBundle\Utils\Worker
+      arguments: ['@doctrine.orm.entity_manager', '%kernel.project_dir%']
+
+    app.mailer:
+      class: AppBundle\Utils\Mailer
+      arguments: ['@mailer', '@twig', "@app.worker", "@security.token_storage"]
+
+    app.parser:
+      class: AppBundle\Utils\Parser
+
+    #Event Listener
+    upload_listener:
+        class: AppBundle\EventListener\UploadListener
+        arguments: ["%upload_directory%", "%description_upload_directory%"]
+        tags:
+          - { name: doctrine.event_listener, event: prePersist }
+          - { name: doctrine.event_listener, event: preUpdate }
+          - { name: doctrine.event_listener, event: postLoad }
+
+    #Twig Extension
+    app.twig_extension:
+        class: AppBundle\Twig\Extension\AppExtension
+        public: false
+        arguments: ["@app.worker", "@app.parser", "%web_dir%"]
+        tags:
+            - { name: twig.extension }

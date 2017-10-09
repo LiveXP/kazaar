@@ -1,0 +1,51 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block form %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/bower/simplemde/dist/simplemde.min.css') }}">
+    <script src="{{ asset('assets/js/simplemde.js') }}"></script>
+    <script src="{{ asset('assets/bower/simplemde/dist/simplemde.min.js') }}"></script>
+    <script type="text/javascript">
+        var uniqid = "{{ admin.uniqid }}";
+
+        function changeCategories(val) {
+            var id = "#" + uniqid + "_category";
+            $('id').attr('required', true);
+            $.ajax({
+                url: "{{ admin.generateUrl('reloadCategories') }}",
+                data: {'id': val, 'uniquid': "{{ admin.uniqid }}"},
+                method: 'POST',
+                success: function (data) {
+                    var select = '';
+                    var option = $(id).find(":selected");
+                    $.each(data, function (key, value) {
+                        var selected = value['id'] == option.val() ? "selected" : '';
+                        select += "<option "+selected+" value='"+value['id']+"'>" + value['text'] + "</option>";
+                    });
+
+                    $(id).select2("val", '');
+                    $(id).html(select).trigger('change');
+                }
+            });
+
+        }
+
+
+        $(document).ready(function () {
+            var select = $("select[id$=_morningCheckModel]");
+            if (select.length !== "undefined" && select.length > 0) {
+                changeCategories(select.val());
+                select.change(function () {
+                    changeCategories($(this).val());
+                });
+            }
+
+            var descId = uniqid + "_description";
+            if (document.getElementById(descId)) {
+                translatedSimpleMDE(descId);
+            }
+
+        });
+
+    </script>
+{% endblock %}

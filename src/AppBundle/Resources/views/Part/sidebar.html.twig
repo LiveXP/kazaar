@@ -1,0 +1,66 @@
+<div class="col-md-4 sidebar">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p class="padding-left40 bold">Progression globale</p>
+            {{ render(controller('AppBundle:Part:globalProgress')) }}
+            <div class="form-group">
+                <label for="morning_check"></label>
+                <select name="morning_check" id="morning_check" class="form-control">
+                    <option value='' selected>Choisissez le client</option>
+                    {% for mcm in mcms %}
+                        <option value="{{ mcm.id }}" {{ morningCheck.name == mcm.name ? "selected" : '' }}>{{ mcm.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p class="padding-left40 bold">Progression de {{ morningCheck.name }}</p>
+            {{ render(controller('AppBundle:Part:morningCheckProgress', {'id': morningCheck.id})) }}
+        </div>
+    </div>
+
+    <div class="list-group">
+        {% for category, datum in data %}
+            <li class="list-group-item active">{{ category }}</li>
+            {% for checking in datum %}
+                {% if checking.id == current_checking_id %}
+                    <button class="list-group-item disabled">
+                        {{ checking.name }}
+                        {% if checking.status is not null %}
+                            &nbsp; <i class="fa fa-check-square-o fa-2x pull-right text-success" aria-hidden="true"></i>
+                        {% endif %}
+                    </button>
+                {% else %}
+                    <a href="{{ path('morning_check', {'id': morningCheck.id, 'checking_id': checking.id}) }}" class="list-group-item">
+                        {{ checking.name }}
+                        {% if checking.status is not null %}
+                            &nbsp; <i class="fa fa-check-square-o fa-2x pull-right text-success" aria-hidden="true"></i>
+                        {% endif %}
+                    </a>
+                {% endif %}
+
+            {% endfor %}
+        {% endfor %}
+        {% if currentPath == "morning_check_final" %}
+            <button class="list-group-item success margin-top10 active disabled">
+                Finaliser
+                {% if morningCheck.closed %}
+                    &nbsp; <i class="fa fa-check-square-o fa-2x pull-right text-success" aria-hidden="true"></i>
+                {% endif %}
+            </button>
+        {% else %}
+            <button data-href="{{ path('morning_check_final', {'id':  morningCheck.id}) }}" data-bootbox="{{ bootbox }}"
+                    class="list-group-item success margin-top10" id="final_button">
+                Finaliser
+                {% if morningCheck.closed %}
+                    &nbsp; <i class="fa fa-check-square-o fa-2x pull-right text-success" aria-hidden="true"></i>
+                {% endif %}
+            </button>
+        {% endif %}
+    </div>
+
+</div>
+

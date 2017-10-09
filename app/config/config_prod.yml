@@ -1,0 +1,24 @@
+imports:
+    - { resource: config.yml }
+
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            type: rotating_file
+            action_level: error
+            handler: nested
+            max_files: 15
+        nested:
+            type: rotating_file
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: error
+            max_files: 15
+        console:
+            type: console
+            process_psr_3_messages: false

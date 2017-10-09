@@ -1,0 +1,29 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+
+{% block body %}
+    <div class="row marketing">
+        <div class="col-lg-6 col-lg-offset-3">
+            {% if last is defined %}
+                <div class="alert alert-success" role="alert">
+                    Tous les MorningCheck ont été traités. Vous pouvez les revisualiser
+                    <strong><a href="{{ path('morning_check_final', {'id': last.id}) }}">ici</a></strong>
+                </div>
+            {% endif %}
+
+            <h4><a href="{{ path('start_morning_check') }}">Commencer/Reprendre</a></h4>
+            <p>Commencer ou reprendre les Morning Check du jour</p>
+
+            <h4><a href="{{ path('history_index') }}">Historique</a></h4>
+            <p>Visiter l'historique des Morning Check</p>
+
+            <h4><a href="{{ path('history_stats') }}">Statistiques</a></h4>
+            <p>Visiter les statistiques des Morning Check</p>
+
+            <h4><a href="{{ path('sonata_admin_dashboard') }}">Edition</a></h4>
+            <p>Editer/Créer des modèles</p>
+        </div>
+    </div>
+{% endblock %}

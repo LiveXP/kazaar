@@ -1,0 +1,34 @@
+<staffusers>
+    <staff>
+        <id>1</id>
+        <staffgroupid>1</staffgroupid>
+        <firstname>John</firstname>
+        <lastname>Doe</lastname>
+        <fullname>John Doe</fullname>
+        <username>admin</username>
+        <email>john.doe@kayako.com</email>
+        <designation>CEO</designation>
+        <greeting>Hello, How may I help you?</greeting>
+        <mobilenumber>123456</mobilenumber>
+        <isenabled>1</isenabled>
+        <timezone>GMT</timezone>
+        <enabledst>1</enabledst>
+        <signature>John Doe (+1 909 23232344)</signature>
+    </staff>
+    <staff>
+        <id>2</id>
+        <staffgroupid>1</staffgroupid>
+        <firstname>Test</firstname>
+        <lastname>User</lastname>
+        <fullname>TestUser</fullname>
+        <username>TestUser</username>
+        <email>testusr@test.com</email>
+        <designation>CEO</designation>
+        <greeting>Hello, How may I help you?</greeting>
+        <mobilenumber>123456</mobilenumber>
+        <isenabled>1</isenabled>
+        <timezone>GMT</timezone>
+        <enabledst>1</enabledst>
+        <signature>John Doe (+1 909 23232344)</signature>
+    </staff>
+</staffusers>

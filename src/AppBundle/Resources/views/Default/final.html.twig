@@ -1,0 +1,46 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}Résumé {{ current.name }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {{ render(controller('AppBundle:Part:sidebar', {'id': current.id})) }}
+        <h2 class="text-center">{{ title }}</h2>
+        <div class="col-md-8">
+            {% if current.email %}
+                <p>Destinataire(s) : {{ current.recipients|mail_to|join(", ")|raw }}</p>
+                <p>CC : {{ current.cc|mail_to|join(", ")|raw }}</p>
+            {% endif %}
+            {% include 'AppBundle:Part:checkings.html.twig' with {'morningCheck': current} %}
+            <div class="text-center margin-top10">
+                {% set break = false %}
+                {% for checking in current.checkings if checking.status is null and not break %}
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Attention !</strong> Certains checks n'ont pas été remplis
+                        {% if current.email %}
+                            et ne seront donc pas ajoutés dans le mail.
+                        {% endif %}
+                    </div>
+                    {% set break = true %}
+                {% endfor %}
+                {% if current.email %}
+                    {% if current.closed %}
+                        <a data-href="{{ path('send_mail', {'id': current.id}) }}" class="btn btn-default" id='send-button-bootbox'>
+                            Envoyer le Morning Check et passer au suivant
+                        </a>
+                    {% else %}
+                        <a href="{{ path('send_mail', {'id': current.id}) }}" class="btn btn-default" id='send-button'>
+                            Envoyer le Morning Check et passer au suivant
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('start_morning_check', {'close': current.id}) }}" class="btn btn-default" id='send-button'>
+                        Passer au Morning Check suivant
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

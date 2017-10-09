@@ -1,0 +1,102 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}{{ current.name }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {{ render(controller('AppBundle:Part:sidebar', {'id': current.id, 'current_checking_id': checking.id})) }}
+
+        <h1 class="text-center" id="checking-id" data-id="{{ checking.id }}">{{ checking.name }}</h1>
+        <div class="col-md-8">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Description</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            {{ checking.description|md2html }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% form_theme form.status 'form_div_layout.html.twig' %}
+            {{ form_start(form) }}
+            {{ form_row(form.internalComment) }}
+            <div class="form-group">
+                <div class="btn-group" data-toggle="buttons-radio">
+                    {% for child in form.status.children %}
+                        {% set index = child.vars.value %}
+                        {% set entity = form.children.status.vars.choices[index].data %}
+                        <label for="{{ child.vars.id }}" class="required inline-radio btn btn-{{ entity.color }}">
+                            {{ form_widget(child) }} {{ entity }}
+                        </label>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-default pull-right">Enregistrer et Suivant</button>
+                <div class="alert alert-danger alert-dismissible margin-top20" role="alert" id="alert" style="display: none;">
+                    <button type="button" class="close hide_alert"><span aria-hidden="true">&times;</span></button>
+                    <strong>Erreur!</strong> <span class="error"></span>
+                </div>
+            </div>
+
+            {{ form_row(form.comment) }}
+            <div class="alert alert-info alert-dismissible margin-top20" role="alert" id="alert-link" style="display: none;">
+                <button type="button" class="close hide_alert"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="row">
+                {% for i in 0..2 %}
+                    <div class="col-md-4 target contain" data-target="image_{{ i }}" id="target_image_{{ i }}"
+                            {% if checking.images.get(i) is not null %}
+                                data-id="{{ checking.images.get(i).id }}"
+                                style="z-index: 10; background-image: url('{{ checking.images.get(i)|base64 }}')"
+                            {% endif %}>
+                    </div>
+
+                    <input type="hidden" name="image[{{ i }}]" id="image_{{ i }}">
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for i in 0..2 %}
+                    <div class="col-md-4 text-center margin-top10">
+                        <button class="btn btn-sm btn-warning btn-delete" data-target="image_{{ i }}" type="button">Supprimer la photo</button>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if last is not null %}
+                <div class="text-center margin-top20 margin-bottom20">
+                    <button type="button" class="btn btn-info" id="copyLast">Recopier le texte du précédent Morning Check</button>
+                </div>
+
+                <div class="panel-group" id="accordionD">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordionD" href="#collapseTwo">Commentaire du précédent Morning Check</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse in">
+                            <div class="panel-body" id="panelLast">
+                                {{ last.comment|md2html }}
+                                <div id="editor_container" style="display: none;">
+                                    <textarea name="last" id="last" placeholder="">{{ last.comment }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-info margin-top20 margin-bottom20">Aucun Morning Check précédent trouvé</div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-default margin-top20">Enregistrer et Suivant</button>
+            {{ form_end(form) }}
+        </div>
+
+
+
+    </div>
+{% endblock %}

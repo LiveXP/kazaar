@@ -1,0 +1,22 @@
+services:
+    admin.morning_check_model:
+        class: AppBundle\Admin\MorningCheckModelAdmin
+        arguments: [~, AppBundle\Entity\MorningCheckModel, AppBundle:Admin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Models, label: MorningCheckModel }
+
+    admin.checking_model:
+        class: AppBundle\Admin\CheckingModelAdmin
+        arguments: [~, AppBundle\Entity\CheckingModel, AppBundle:Admin,  "%description_web_dir%"]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Models, label: CheckingModel }
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Models, label: Category, show_in_dashboard: false }
+    admin.description_image:
+        class: AppBundle\Admin\DescriptionImageAdmin
+        arguments: [~, AppBundle\Entity\DescriptionImage, ~,  "%description_web_dir%"]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Models, label: DescriptionImage, show_in_dashboard: false }
