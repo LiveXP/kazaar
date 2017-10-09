@@ -1,0 +1,40 @@
+/app/config/parameters.yml
+
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+# Managed by Composer
+
+/vendor/
+
+# Assets and user uploads
+/web/bundles/
+/web/uploads/
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+/builds
+config.toml
+web/phpunit
+
+# Backup entities generated with doctrine:generate:entities command
+**/Entity/*~
+
+#IDE files
+.idea/
+
+#Docker files
+docker-compose.yml
+
+#Bower
+/web/assets/bower/
+web/compiled
