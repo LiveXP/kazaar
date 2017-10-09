@@ -8,4 +8,24 @@
   email: true
   categories:
     - Category
+-
+  name: '[CORP] Enterprise2'
+  recipients:
+    - test@gmail.com
+  cc:
+    - test@yahoo.fr
+  position: 1
+  email: true
+  categories:
+    - Category
+-
+  name: '[CORP] Enterprise3'
+  recipients:
+    - test@gmail.com
+  cc:
+    - test@yahoo.fr
+  position: 1
+  email: true
+  categories:
+    - Category
 

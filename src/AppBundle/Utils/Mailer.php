@@ -12,7 +12,6 @@
 namespace AppBundle\Utils;
 
 use AppBundle\Entity\MorningCheck;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 /**
  * Class Mailer
@@ -48,13 +47,13 @@ class Mailer
      * @param \Swift_Mailer $mailer
      * @param \Twig_Environment $twig
      * @param Worker $worker
-     * @param TokenStorage $storage
+     * @param string $sender
      */
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, Worker $worker, TokenStorage $storage)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, Worker $worker, $sender)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
-        $this->mailSender = $storage->getToken()->getUser()->getEmail();
+        $this->mailSender = $sender;
         $this->worker = $worker;
     }
 

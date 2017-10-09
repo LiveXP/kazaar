@@ -44,7 +44,7 @@ class MorningCheckCloseCommand extends ContainerAwareCommand
 
 
         foreach ($mc as $morningCheck) {
-            $morningCheck->setClosed(true)->setClosedBy("computer");
+            $morningCheck->setClosed(true);
             $manager->persist($morningCheck);
         }
 

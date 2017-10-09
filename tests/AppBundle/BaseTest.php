@@ -11,21 +11,16 @@
 
 namespace tests\AppBundle;
 
-use AppBundle\Security\User\User;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 abstract class BaseTest extends WebTestCase
 {
     /** @var Client $client */
     private $client;
-    /** @var User $user */
-    private $user;
 
     public function setUp()
     {
@@ -42,15 +37,6 @@ abstract class BaseTest extends WebTestCase
     {
         if (empty($this->client)) {
             $this->client = static::createClient();
-            $container = static::$kernel->getContainer();
-            $session = $container->get('session');
-            $this->user = $container->get('app.user_provider')->getTestUser();
-
-            $token = new UsernamePasswordToken($this->user, null, 'main', $this->user->getRoles());
-            $session->set('_security_main', serialize($token));
-            $session->save();
-
-            $this->client->getCookieJar()->set(new Cookie($session->getName(), $session->getId()));
         }
 
         return $this->client;
@@ -85,14 +71,6 @@ abstract class BaseTest extends WebTestCase
         imagedestroy($im);
 
         return new File($pathname);
-    }
-
-    /**
-     * @return User
-     */
-    protected function getUser()
-    {
-        return $this->user;
     }
 
 }

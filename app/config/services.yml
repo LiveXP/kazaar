@@ -23,7 +23,7 @@ services:
 
     app.mailer:
       class: AppBundle\Utils\Mailer
-      arguments: ['@mailer', '@twig', "@app.worker", "@security.token_storage"]
+      arguments: ['@mailer', '@twig', "@app.worker", "%mail_sender%"]
 
     app.parser:
       class: AppBundle\Utils\Parser

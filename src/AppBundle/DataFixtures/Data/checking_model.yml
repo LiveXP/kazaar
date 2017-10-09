@@ -3,3 +3,30 @@
   description: null
   morningCheckModel: '[CORP] Enterprise'
   category: Category
+-
+  name: Checking2
+  description: null
+  morningCheckModel: '[CORP] Enterprise'
+  category: Category
+
+-
+  name: Checking3
+  description: null
+  morningCheckModel: '[CORP] Enterprise2'
+  category: Category
+-
+  name: Checking4
+  description: null
+  morningCheckModel: '[CORP] Enterprise2'
+  category: Category
+
+-
+  name: Checking5
+  description: null
+  morningCheckModel: '[CORP] Enterprise3'
+  category: Category
+-
+  name: Checking6
+  description: null
+  morningCheckModel: '[CORP] Enterprise3'
+  category: Category

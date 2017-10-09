@@ -16,7 +16,6 @@ use AppBundle\Entity\MorningCheck;
 use AppBundle\Entity\MorningCheckModel;
 use AppBundle\Entity\Status;
 use AppBundle\Form\CheckingType;
-use AppBundle\Security\User\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +23,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGenerator;
 
 /**
  * Default Controller for MorningCheck

@@ -73,7 +73,7 @@ class DefaultControllerTest extends BaseTest
     {
         $this->getClient()->followRedirects();
 
-        $mcm = $this->getManager()->getRepository("AppBundle:MorningCheckModel")->findOneBy(['name' => "[AIP] Antin IP"]);
+        $mcm = $this->getManager()->getRepository("AppBundle:MorningCheckModel")->findOneBy(['name' => '[CORP] Enterprise3']);
         //Fill all checkings for this morning check (3)
 
         for ($i = 0; $i < $mcm->getCheckingModels()->count(); $i++) {
@@ -128,40 +128,6 @@ class DefaultControllerTest extends BaseTest
     {
         $this->getClient()->request("GET", "/admin/dashboard");
         $this->assertEquals($this->getClient()->getResponse()->getStatusCode(), 200);
-    }
-
-    public function testCreateTicket()
-    {
-        $this->getClient()->request("GET", "/start");
-        $crawler = $this->getClient()->followRedirect();
-
-        $id = $this->getClient()->getRequest()->attributes->get('checking_id');
-
-        //Update the form action to the AJAX uri
-        $form = $crawler->filter('form[name="appbundle_checking"]')->form([], "POST");
-        $form->getNode()->setAttribute('action', "/create_ticket?id={$id}");
-
-        $values = [
-            'appbundle_checking[internalComment]' => "Test",
-            'appbundle_checking[status]' => 1,
-            'appbundle_checking[comment]' => "Commentaire",
-        ];
-
-        $form->setValues($values);
-
-        //Post with valid data
-        $this->getClient()->submit($form);
-        $response = $this->getClient()->getResponse();
-        $this->assertEquals(200, $response->getStatusCode());
-        $content = json_decode($response->getContent(), true);
-
-        $this->assertArrayNotHasKey('error', $content);
-        $this->assertArrayHasKey('success', $content);
-
-        //Post with invalid data
-        $this->getClient()->request("POST", "/create_ticket?id={$id}");
-        $response = $this->getClient()->getResponse();
-        $this->assertEquals(403, $response->getStatusCode());
     }
 
 }
