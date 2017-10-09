@@ -11,7 +11,9 @@ Docker environment for follow those steps.
 
 ### Docker Compose
 
-You can install the project with docker (docker compose).
+You can install the project with docker (docker compose). 
+
+For more informations about docker-compose check this [readme](./engine/README.md)
 
 First you need to copy the ``docker-compose.yml.dist`` to ``docker-compose.yml`` and update the mysql informations 
 

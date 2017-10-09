@@ -1,6 +1,3 @@
-PHPDocker.io generated environment
-==================================
-
 #How to run
 
 Dependencies:
