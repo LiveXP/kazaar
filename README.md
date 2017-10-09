@@ -1,21 +1,20 @@
 Kaazar
 ======
 
-Kaazar is an internal system of LiveXP used to simplify morning checks.
+Kaazar is an internal system in LiveXP used to simplify daily IT Morning Checks.
 
 Installation
 ------------
 
-This Symfony application needs some extra steps to work. You need to use the
-Docker environment for follow those steps.
+This Symfony application needs some steps to work. You may use Docker environment and follow those steps.
 
 ### Docker Compose
 
 You can install the project with docker (docker compose). 
 
-For more informations about docker-compose check this [readme](./engine/README.md)
+For more information about docker-compose check this [readme](./engine/README.md)
 
-First you need to copy the ``docker-compose.yml.dist`` to ``docker-compose.yml`` and update the mysql informations 
+First you need to copy ``docker-compose.yml.dist`` to ``docker-compose.yml`` and update the mysql informations 
 
 Then run ``docker-compose up`` to start the docker environment
 
@@ -59,7 +58,7 @@ $ docker-compose exec php-fpm bin/console assetic:dump
 Commands
 ------
 
-This project uses the following command to send emails, you can put it in a crontab to send email to a fixed interval
+This project use the following command to send emails, you may put it in a crontab to send email to a fixed interval
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $ docker-compose exec php-fpm bin/console swiftmailer:spool:send --env=prod
@@ -84,7 +83,7 @@ You can create/update/delete your models in the admin interface (/admin/dashboar
 The MorningCheck and Checking Entities are created from their models every days, 
 so if you edit a Model during the day you will see the changes on the MorningCheck/Checking the next day only.
 
-You can disable a MorningCheckModel and a CheckingModel so that it is not created the next day.
+You can disable a MorningCheckModel and a CheckingModel so that it will not created the next day.
 
 You can define an occurence (daily/weekly/monthly) for a CheckingModel, 
 so that it will be created only when needed (every day, every monday, every first of the month)
