@@ -1,0 +1,6 @@
+-
+  name: OK
+  color: success
+-
+  name: KO
+  color: danger

@@ -35,6 +35,12 @@ $ docker-compose exec php-fpm composer install
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $ docker-compose exec php-fpm bin/console doctrine:schema:update --force
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Data for fixtures are available, if you wish to use them, you need to fill the files 
+in [DataFixtures/Data](./src/AppBundle/DataFixtures/Data) with you own data and then load them
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $ docker-compose exec php-fpm bin/console doctrine:fixtures:load
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -53,9 +59,9 @@ $ docker-compose exec php-fpm bin/console assetic:dump
 Commands
 ------
 
-This project uses the following command
+This project uses the following command to send emails, you can put it in a crontab to send email to a fixed interval
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-$ docker-compose exec php-fpm bin/console swiftmailer:spool:send
+$ docker-compose exec php-fpm bin/console swiftmailer:spool:send --env=prod
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

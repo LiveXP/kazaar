@@ -38,3 +38,6 @@ docker-compose.yml
 #Bower
 /web/assets/bower/
 web/compiled
+
+#Fixtures
+/src/AppBundle/DataFixtures/Data/

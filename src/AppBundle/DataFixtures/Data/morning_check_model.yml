@@ -1,0 +1,11 @@
+-
+  name: '[CORP] Enterprise'
+  recipients:
+    - test@gmail.com
+  cc:
+    - test@yahoo.fr
+  position: 1
+  email: true
+  categories:
+    - Category
+
