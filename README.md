@@ -3,6 +3,42 @@ Kaazar
 
 Kaazar is an internal LiveXP system used to simplify daily IT Morning Checks.
 
+Features
+--------
+* Webinterface to run Check
+  * Mark Down Editor
+  * Ability to copy/past ScreenShot easyly
+  * Send the result by email (if wanted)
+* Organisation by project / customer
+* Get a view on the global progression
+* Get Statistic by month
+* Consult the history by Check and/or Date
+* Admin Web Interface for :
+  * Create / edit a project and checks
+  * Describe the content of the test
+  * Define mailing list
+  * Define occurence (daily/weekly/monthly)
+
+
+### Screenshots
+
+Page for executing a Check : 
+![livexp_kaazar_admin_checking_model](./docs/livexp_kaazar_checking_interface.png)
+
+To add images just copy them from a screenshot tool and paste them in the squares.
+
+The field "Commentaire Interne" is a tip that will be printed in its box every day for the same Checking.
+It is usefull if you want to pass some information like a todo or a not todo.
+
+By clicking on an image square you can enlarge it
+
+![livexp_kaazar_checking_filled](./docs/livexp_kaazar_checking_filled.png)
+
+Once you filled all your Checking you will arrive to the final page where you will have a summary of all the current Morning Check Checkings,
+and if the Morning Check have the email field enabled, its recipients and CC
+
+![livexp_kaazar_final_interface](./docs/livexp_kaazar_final_interface.png)
+
 Installation
 ------------
 
@@ -93,26 +129,3 @@ you can also include images that you uploaded on the right side of the CheckingM
 by writing the url wrote under the upload picture.
 
 ![livexp_kaazar_admin_checking_model](./docs/livexp_kaazar_admin_checking_model.jpg)
-
-
-### Website content
-
-For each Checking of each MorningCheck you will have a page like this
-![livexp_kaazar_admin_checking_model](./docs/livexp_kaazar_checking_interface.png)
-
-You can navigate between every MorningCheck with the drop down menu, you have a global progression for the day and 
-a progression for the current MorningCheck
-
-To add images just copy them from a screenshot tool and paste them in the squares.
-
-The "Commentaire Interne" is a tip that will be printed in its box every day for the same Checking.
-It is usefull if you want to pass some information like a todo or a not todo.
-
-By clicking on an image square you can enlarge it
-
-![livexp_kaazar_checking_filled](./docs/livexp_kaazar_checking_filled.png)
-
-Once you filled all your Checking you will arrive to the final page where you will have a summary of all the current Morning Check Checkings,
-and if the Morning Check have the email field enabled, its recipients and CC
-
-![livexp_kaazar_final_interface](./docs/livexp_kaazar_final_interface.png)
